@@ -22,9 +22,6 @@ public:
 		return name;
 	}
 };
-
-
-
 void showBackground()//绘制棋盘
 {
 	for (i = 1; i <= 4; i++)
@@ -40,7 +37,7 @@ void showBackground()//绘制棋盘
 }
 
 static player p1, p2;
-int s[3][3], tf = 0, gofirst = 1, row, column, over,mode;
+int s[3][3], tf = 0, gofirst = 1, row, column, over, mode;
 bool jieshu = false;
 IMAGE image_x, image_o;
 int Array_x1 = 0, Array_y1 = 0;
@@ -180,7 +177,12 @@ void computer(int mode)
 			if (breaktf == 1) break;
 		}
 	}
+	if (mode == 2)
+	{
 
+
+
+	}
 }
 void Initialize()//初始化棋盘背景
 {
@@ -195,13 +197,16 @@ void Initialize()//初始化棋盘背景
 	EndBatchDraw();
 	char z[3];
 	char choicemode[3];
+	char gofirst[3];
 	InputBox(z, 3, "选择游戏模式 电脑模式（0） 双人模式（1） 结束游戏（2）");
 	// 将用户输入转换为数字
 	sscanf(z, "%d", &over);
 	if (over == 0)
-		{
+	{
 		InputBox(choicemode, 3, "选择电脑难度 简单模式(0) 普通模式（1）");
 		sscanf(choicemode, "%d", &mode);
+		InputBox(gofirst, 3, "你想先手（0）还是电脑先手（1）");
+		sscanf(gofirst, "%d", &tf);
 	}
 }
 
@@ -229,7 +234,7 @@ void User_relatedinput()//玩家动作
 
 		if (over == 0)
 		{
-			 
+
 			if (tf == 0)
 			{
 				for (i = 0; i < 3; i++)
@@ -445,7 +450,7 @@ int main()
 
 	cout << "电脑模式（0），结束游戏（1），双人模式（2）: ";
 	cin >> over;
-	
+
 
 	while (over == 2)
 	{
