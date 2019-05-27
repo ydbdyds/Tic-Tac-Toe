@@ -44,8 +44,8 @@ int Array_x1 = 0, Array_y1 = 0;
 
 void loadingChessPictures()//加载棋子图片
 {
-	loadimage(&image_o, _T("E:\\o.jpg"), Unitlength - 10, Unitlength - 10);
-	loadimage(&image_x, _T("E:\\x.jpg"), Unitlength - 10, Unitlength - 10);
+	loadimage(&image_o, _T("IMAGE"), _T("O"), Unitlength - 10, Unitlength - 10);
+	loadimage(&image_x, _T("IMAGE"), _T("X"), Unitlength - 10, Unitlength - 10);
 }
 void showchesspieces()//绘制棋子
 {
