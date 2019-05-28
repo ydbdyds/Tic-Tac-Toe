@@ -39,5 +39,11 @@
     <Image Include="o.jpg">
       <Filter>资源文件</Filter>
     </Image>
+    <Image Include="t.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="..\..\Chrome下载\favicon.ico">
+      <Filter>资源文件</Filter>
+    </Image>
   </ItemGroup>
 </Project>

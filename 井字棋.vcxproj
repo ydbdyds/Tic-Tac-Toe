@@ -163,7 +163,9 @@
     <ResourceCompile Include="井字棋.rc" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="..\..\Chrome下载\favicon.ico" />
     <Image Include="o.jpg" />
+    <Image Include="t.ico" />
     <Image Include="x.jpg" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
