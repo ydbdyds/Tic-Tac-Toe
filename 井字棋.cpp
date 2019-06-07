@@ -1,4 +1,10 @@
-﻿#include<iostream>
+﻿/*
+如需编译
+请安装easyx图形库
+并在项目属性中将预处理器定义一项改为
+_CRT_SECURE_NO_WARNINGS
+*/
+#include<iostream>
 #include <graphics.h>      // 引用图形库头文件
 #include <conio.h>
 #include<stdio.h>
@@ -22,6 +28,7 @@ public:
 		return name;
 	}
 };
+
 void showBackground()//绘制棋盘
 {
 	for (i = 1; i <= 4; i++)
@@ -66,12 +73,12 @@ int IsWin()
 	return 0;
 }
 
-void loadingChessPictures()//加载棋子图片
+void loadingChessPictures()//加载棋子图片 由陈翔宇负责
 {
 	loadimage(&image_o, _T("IMAGE"), _T("O"), Unitlength - 10, Unitlength - 10);
 	loadimage(&image_x, _T("IMAGE"), _T("X"), Unitlength - 10, Unitlength - 10);
 }
-void showchesspieces()//绘制棋子
+void showchesspieces()//绘制棋子 由陈翔宇负责
 {
 	for (i = 0; i < 3; i++)
 	{
@@ -190,7 +197,7 @@ int check()
 		}
 	}
 }
-int Evaluation()
+int Evaluation()  //困难模式评估函数  由陈翔宇负责
 {
 	int i, j, temp[3][3];
 
@@ -267,7 +274,7 @@ void Initialize()//初始化棋盘背景
 		sscanf(gofirst, "%d", &tf);
 	}
 }
-int AlphaBeta(int& value, int deep, bool MAX)
+int AlphaBeta(int& value, int deep, bool MAX) // 阿尔法贝塔剪枝算法 由陈翔宇负责
 {
 	bool prune = false;
 	int i, j, flag, temp;
@@ -450,12 +457,37 @@ void computer(int mode)
 			if (breaktf == 1) break;
 		}
 	}
-	if (mode == 2)
+	if (mode == 2) //困难模式陈翔宇负责
 	{
-		int row, col, temp;
+		int row=8, col=8, temp;
 		int m = -10000, value = -10000, deep = 1;
 		count_1 = 0;
-
+		Evaluation();
+		count_1++;
+		if (x == 0)
+		{
+			settextstyle(Unitlength, 0, _T("黑体"));
+			settextcolor(RED);
+			outtextxy(Unitlength, Unitlength * 5, tellDraw);
+			jieshu = true;
+			return;
+		}
+		if (y == 0)
+		{
+			settextstyle(Unitlength, 0, _T("黑体"));
+			settextcolor(RED);
+			outtextxy(Unitlength, Unitlength * 5, tellDraw);
+			jieshu = true;
+			return;
+		}
+		if (IsWin() == -1)
+		{
+			settextstyle(Unitlength, 0, _T("黑体"));
+			settextcolor(RED);
+			outtextxy(Unitlength, Unitlength * 5, tellWin);
+			jieshu = true;
+			return;
+		}
 		for (int i = 0; i < 3; i++)
 		{
 			for (int j = 0; j < 3; j++)
@@ -470,6 +502,7 @@ void computer(int mode)
 						settextcolor(RED);
 						outtextxy(Unitlength, Unitlength * 5, tellLoser);
 						jieshu = true;
+						return;
 					}
 					if (value > m)
 					{
@@ -484,34 +517,23 @@ void computer(int mode)
 			}
 		}
 		
-		s[row][col] = 1;
+			s[row][col] = 1;
+		
+		
 
 		value = -10000; m = -10000; deep = 1;
 
 		count_1++;
 
 		Evaluation();
-		if (x == 0)
-		{
-			settextstyle(Unitlength, 0, _T("黑体"));
-			settextcolor(RED);
-			outtextxy(Unitlength, Unitlength * 5, tellDraw);
-			jieshu = true;
-		}
-		if (IsWin() == -1)
-		{
-			settextstyle(Unitlength, 0, _T("黑体"));
-			settextcolor(RED);
-			outtextxy(Unitlength, Unitlength * 5, tellWin);
-			jieshu = true;
-		}
+		
 	}
 
 
 }
 
 
-void User_relatedinput()//玩家动作
+void User_relatedinput()//玩家动作  图形化交互部分陈翔宇负责
 {
 	TCHAR a[20];
 	HWND hwnd = GetHWnd();//获取绘图窗口句柄
@@ -665,8 +687,7 @@ int main()
 	}
 
 
-	cout << "电脑模式（0），结束游戏（1），双人模式（2）: ";
-	cin >> over;
+
 
 
 	while (over == 2)
